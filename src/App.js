@@ -1,7 +1,14 @@
+import React from 'react';
+
 
 function App() {
-  return (
-    <h1>Calculator</h1>
+  return (<React.Fragment>
+
+    <div>
+      <h1>Calculator</h1>
+    </div>
+
+  </React.Fragment>
   );
 }
 
