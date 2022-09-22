@@ -57,8 +57,9 @@ const Buttons = (props) => {
         <button value="c" className='col bg-info calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(0); operationEnabled() }}>C</button>
         <button value="/" className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>/</button>
       </div>
-
+      
       <div className='row'>
+        {/* eslint-disable-next-line */}
         <button className='col bg-info calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(eval(props.getDisplayData)) }}>=</button>
       </div>
 
