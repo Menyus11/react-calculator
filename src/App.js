@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 
-
 const operationDisabled = () => {
   document.querySelectorAll('.operation').forEach(e => {
     e.setAttribute('disabled', "")
@@ -14,13 +13,6 @@ const operationEnabled = () => {
   });
 }
 
-const equalHandler = (props) => {
-  let operation = document.querySelector(".display");
-  //eslint-disable-next-line
-   let result =  eval(operation.innerHTML.trim());
-   operation.innerHTML = result;
-}
-
 const Display = (props) => {
   return (
     <textarea className='bg-warning border rounded display form-control text-wrap' defaultValue={props.getDisplayData}></textarea>
@@ -29,9 +21,9 @@ const Display = (props) => {
 
 const Buttons = (props) => {
 
-  const buttonsHandler = props.getDisplayData === 0 ? 
-  (event) => { props.setDisplayData(event.target.value); operationEnabled()} : 
-  function (event) { props.setDisplayData(props.getDisplayData + event.target.value); operationEnabled() };
+  const buttonsHandler = props.getDisplayData === 0 ?
+    (event) => { props.setDisplayData(event.target.value); operationEnabled() } :
+    function (event) { props.setDisplayData(props.getDisplayData + event.target.value); operationEnabled() };
 
   const operatorHandler = function (event) { props.setDisplayData(props.getDisplayData + event.target.value); operationDisabled() };
 
@@ -62,19 +54,17 @@ const Buttons = (props) => {
       <div className='row'>
         <button value="." className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>,</button>
         <button value="0" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>0</button>
-        <button value="c" className='col bg-info calcbutton m-2 py-4 rounded' onClick={ () => {props.setDisplayData(0); operationEnabled()} }>C</button>
+        <button value="c" className='col bg-info calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(0); operationEnabled() }}>C</button>
         <button value="/" className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>/</button>
       </div>
 
       <div className='row'>
-        <button className='col bg-info calcbutton m-2 py-4 rounded' onClick={ equalHandler}>=</button>
+        <button className='col bg-info calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(eval(props.getDisplayData)) }}>=</button>
       </div>
 
     </div>
   )
-
 }
-
 
 function App() {
 
@@ -89,7 +79,6 @@ function App() {
         <Buttons setDisplayData={setDisplayData} getDisplayData={displayData}></Buttons>
       </div>
       <div className='col-3'></div>
-
     </div>
 
   </React.Fragment>
