@@ -2,20 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Buttons, Display } from './components'
 
-export const operationDisabled = () => {
-  document.querySelectorAll('.operation').forEach(e => {
-    e.setAttribute('disabled', "")
-  });
-}
-
-export const operationEnabled = () => {
-  document.querySelectorAll('.operation').forEach(e => {
-    e.removeAttribute('disabled')
-  });
-}
-
 function App() {
-
   const [displayData, setDisplayData] = useState(0);
 
   return (<React.Fragment>

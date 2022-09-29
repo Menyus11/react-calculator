@@ -1,6 +1,18 @@
-import { operationDisabled, operationEnabled } from './App';
+import React from "react";
 
 const Buttons = (props) => {
+
+    const operationDisabled = () => {
+        document.querySelectorAll('.operation').forEach(e => {
+            e.setAttribute('disabled', "")
+        });
+    }
+
+    const operationEnabled = () => {
+        document.querySelectorAll('.operation').forEach(e => {
+            e.removeAttribute('disabled')
+        });
+    }
 
     const buttonsHandler = props.getDisplayData === 0 ?
         (event) => { props.setDisplayData(event.target.value); operationEnabled() } :
@@ -8,40 +20,54 @@ const Buttons = (props) => {
 
     const operatorHandler = function (event) { props.setDisplayData(props.getDisplayData + event.target.value); operationDisabled() };
 
+
+    const NumberButton = (props) => {
+        return (
+            <button value={props.value} className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>{props.value}</button>
+        )
+    }
+
+    const OperationButton = (props) => {
+        return (
+            <button value={props.value} className='col bg-warning calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>{props.value}</button>
+        )
+    }
+
     return (
         <div className='p-3' >
 
             <div className='row'>
-                <button value="7" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>7</button>
-                <button value="8" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>8</button>
-                <button value="9" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>9</button>
-                <button value="+" className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>+</button>
+                <NumberButton value="7" />
+                <NumberButton value="8" />
+                <NumberButton value="9" />
+                <OperationButton value="+" />
             </div>
 
             <div className='row'>
-                <button value="4" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>4</button>
-                <button value="5" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>5</button>
-                <button value="6" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>6</button>
-                <button value="-" className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>-</button>
+                <NumberButton value="4" />
+                <NumberButton value="5" />
+                <NumberButton value="6" />
+                <OperationButton value="-" />
             </div>
 
             <div className='row'>
-                <button value="1" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>1</button>
-                <button value="2" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>2</button>
-                <button value="3" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>3</button>
-                <button value="*" className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>x</button>
+                <NumberButton value="1" />
+                <NumberButton value="2" />
+                <NumberButton value="3" />
+                <OperationButton value="*" />
             </div>
 
             <div className='row'>
-                <button value="." className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>,</button>
-                <button value="0" className='col bg-info calcbutton m-2 py-4 rounded' onClick={buttonsHandler}>0</button>
-                <button value="c" className='col bg-info calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(0); operationEnabled() }}>C</button>
-                <button value="/" className='col bg-info calcbutton m-2 py-4 rounded operation' onClick={operatorHandler}>/</button>
+                <button className='col bg-danger calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(0); operationEnabled() }}>C</button>
+               
+                <NumberButton value="0" />
+                <OperationButton value="." />
+                <OperationButton value="/" />
             </div>
 
             <div className='row'>
                 {/* eslint-disable-next-line */}
-                <button className='col bg-info calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(eval(props.getDisplayData)) }}>=</button>
+                <button className='col bg-success calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(eval(props.getDisplayData)) }}>=</button>
             </div>
 
         </div>
@@ -50,7 +76,7 @@ const Buttons = (props) => {
 
 const Display = (props) => {
     return (
-        <textarea className='bg-warning border rounded display form-control text-wrap' defaultValue={props.getDisplayData}></textarea>
+        <textarea className='bg-dark border rounded display form-control text-light text-wrap' defaultValue={props.getDisplayData}></textarea>
     )
 }
 
