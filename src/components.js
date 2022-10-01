@@ -33,6 +33,13 @@ const Buttons = (props) => {
         )
     }
 
+/*     const EqualButton = (props) => {
+        return (
+            
+            <button value={props.value} className='col bg-success calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(eval(props.getDisplayData)) }}>{props.value}</button>
+        )
+    } */
+
     return (
         <div className='p-3' >
 
@@ -68,6 +75,7 @@ const Buttons = (props) => {
             <div className='row'>
                 {/* eslint-disable-next-line */}
                 <button className='col bg-success calcbutton m-2 py-4 rounded' onClick={() => { props.setDisplayData(eval(props.getDisplayData)) }}>=</button>
+                {/* <EqualButton value="="/> */}
             </div>
 
         </div>
