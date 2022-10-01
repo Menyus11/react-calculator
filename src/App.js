@@ -3,7 +3,7 @@ import './App.css';
 import { Buttons, Display } from './components'
 
 function App() {
- const [displayData, setDisplayData] = useState(0);
+  const [displayData, setDisplayData] = useState(0);
 
   return (<React.Fragment>
 
@@ -18,7 +18,7 @@ function App() {
 
   </React.Fragment>
   );
-}  
+}
 
 export default App;
 
